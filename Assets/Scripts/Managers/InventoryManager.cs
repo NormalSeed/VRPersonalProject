@@ -10,6 +10,7 @@ public class InventoryManager : Singleton<InventoryManager>
 {
     public Transform handTransform;
     private List<GameObject> inventory = new();
+    private GameObject[] equipedItem = new GameObject[1];
 
     private void Awake() => Init();   
 
@@ -31,6 +32,7 @@ public class InventoryManager : Singleton<InventoryManager>
         if (targetItem != null)
         {
             inventory.Remove(targetItem);
+            equipedItem[0] = targetItem;
 
             targetItem.transform.SetParent(handTransform);
             targetItem.transform.localPosition = Vector3.zero;
@@ -40,10 +42,6 @@ public class InventoryManager : Singleton<InventoryManager>
             {
                 rb.isKinematic = true;
             }
-            
-            Debug.Log("æ∆¿Ã≈€ ¿Â¬¯");
-            Debug.Log($"{handTransform.position}");
-            Debug.Log($"{targetItem.transform.position}");
         }
         else
         {
@@ -56,6 +54,13 @@ public class InventoryManager : Singleton<InventoryManager>
         if (item.transform.parent == handTransform)
         {
             item.transform.SetParent(null);
+            equipedItem[0] = null;
+
+            Rigidbody rb = item.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+            }
             item.SetActive(false);
             inventory.Add(item);
         }

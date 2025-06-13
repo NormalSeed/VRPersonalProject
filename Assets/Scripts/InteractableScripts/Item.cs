@@ -19,8 +19,5 @@ public abstract class Item : MonoBehaviour
     private void PickUp(SelectExitEventArgs args)
     {
         InventoryManager.Instance.AddItem(gameObject);
-        args.interactableObject.transform.SetParent(InventoryManager.Instance.handTransform);
-        args.interactableObject.transform.localPosition = Vector3.zero;
-        args.interactableObject.transform.localRotation = Quaternion.identity;
     }
 }

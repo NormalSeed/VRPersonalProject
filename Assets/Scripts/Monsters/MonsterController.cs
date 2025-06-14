@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private MonsterAI monsterAI;
+
+    private void Awake() => Init();
+
+    private void Init()
     {
-        
+        monsterAI = GetComponent<MonsterAI>();
+        monsterAI.AIInit();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        monsterAI.DetectPlayer();
     }
 }

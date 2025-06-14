@@ -9,36 +9,31 @@ public class MonsterAI : MonoBehaviour
     private NavMeshAgent agent;
     public XROrigin xrOrigin;
     public float detectionRange = 10f;
+    public float attackRange = 1f;
     public Transform[] waypoints;
     private int currentWayPoint = 0;
     private bool isChasingPlayer = false;
 
-    private void Awake()
-    {
-        Init();
-    }
-
-    private void Init()
+    public void AIInit()
     {
         agent = GetComponent<NavMeshAgent>();
         Wander();
     }
 
-    private void FixedUpdate()
-    {
-        detectPlayer();
-    }
-
-    private void detectPlayer()
+    public void DetectPlayer()
     {
         Transform playerTransform = xrOrigin.Camera.transform;
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-        if (distanceToPlayer < detectionRange)
+        if (distanceToPlayer < detectionRange && distanceToPlayer >= attackRange)
         {
             agent.SetDestination(playerTransform.position);
             isChasingPlayer = true;
         }
-        else
+        else if(distanceToPlayer < attackRange)
+        {
+            AttackPlayer();
+        }
+        else if (distanceToPlayer >= detectionRange)
         {
             if (isChasingPlayer)
             {
@@ -46,6 +41,13 @@ public class MonsterAI : MonoBehaviour
             }
             Wander();
         }
+    }
+
+    private void AttackPlayer()
+    {
+        // 카메라를 Monster쪽으로 돌림과 동시에 몬스터 포식 애니메이션 재생
+        // 카메라 흔들림도 추가하면 좋을 듯
+        // 애니메이션이 종료되면 게임오버 씬으로
     }
 
     private void Wander()

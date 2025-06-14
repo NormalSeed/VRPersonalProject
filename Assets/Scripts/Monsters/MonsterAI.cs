@@ -12,7 +12,11 @@ public class MonsterAI : MonoBehaviour
     public float attackRange = 1f;
     public Transform[] waypoints;
     private int currentWayPoint = 0;
-    private bool isChasingPlayer = false;
+    public bool isChasingPlayer = false;
+    public bool isAttackingPlayer = false;
+
+    private Coroutine coDeadSceneLoad;
+    private WaitForSeconds waitTime = new WaitForSeconds(3f);
 
     public void AIInit()
     {
@@ -22,11 +26,12 @@ public class MonsterAI : MonoBehaviour
 
     public void DetectPlayer()
     {
-        Transform playerTransform = xrOrigin.Camera.transform;
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        Vector3 playerPos = new Vector3(xrOrigin.Camera.transform.position.x, 0, xrOrigin.Camera.transform.position.z);
+        Vector3 flatPos = new Vector3(transform.position.x, 0, transform.position.z);
+        float distanceToPlayer = Vector3.Distance(flatPos, playerPos);
         if (distanceToPlayer < detectionRange && distanceToPlayer >= attackRange)
         {
-            agent.SetDestination(playerTransform.position);
+            agent.SetDestination(playerPos);
             isChasingPlayer = true;
         }
         else if(distanceToPlayer < attackRange)
@@ -42,12 +47,21 @@ public class MonsterAI : MonoBehaviour
             Wander();
         }
     }
-
     private void AttackPlayer()
     {
-        // 카메라를 Monster쪽으로 돌림과 동시에 몬스터 포식 애니메이션 재생
-        // 카메라 흔들림도 추가하면 좋을 듯
-        // 애니메이션이 종료되면 게임오버 씬으로
+        // 카메라를 Monster쪽으로 돌림과 동시에 몬스터 포식 애니메이션 재생 <= MonsterController에서 isAttacking에 반응해 Animation을 재생하도록 설정
+        // 카메라 흔들림도 추가하면 좋을 듯 => Controller쪽에서 제어하도록 변경하는 게 좋아보임
+        isChasingPlayer = false;
+        isAttackingPlayer = true;
+        // 애니메이션이 종료되면 게임오버 씬으로 => GameManager를 통해 씬 변경. 
+        coDeadSceneLoad = StartCoroutine(CoDeadSceneLoad());
+    }
+
+    private IEnumerator CoDeadSceneLoad()
+    {
+        yield return waitTime;
+        GameManager.Instance.LoadScene("GameOverScene");
+        yield return null;
     }
 
     private void Wander()

@@ -16,6 +16,7 @@ public class MonsterController : MonoBehaviour
         model = GetComponent<MonsterModel>();
         animator = GetComponent<Animator>();
         monsterAI.AIInit();
+        SubscribeEvents();
     }
 
     private void Update()
@@ -30,7 +31,7 @@ public class MonsterController : MonoBehaviour
 
     private void HandleAnimation()
     {
-        if (monsterAI.isChasingPlayer)
+        if (monsterAI.isMoving)
         {
             model.IsMoving.Value = true;
         }

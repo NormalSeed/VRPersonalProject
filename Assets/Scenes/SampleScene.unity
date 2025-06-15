@@ -2665,6 +2665,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4642606765625022668, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: xrOrigin
+      value: 
+      objectReference: {fileID: 602031365}
+    - target: {fileID: 4642606765625022668, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1435070148}
+    - target: {fileID: 4642606765625022668, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1176495439}
+    - target: {fileID: 4642606765625022668, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 2023934193}
+    - target: {fileID: 4642606765625022668, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
+      propertyPath: waypoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 581929481}
     - target: {fileID: 5792744366562842766, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
       propertyPath: m_Name
       value: CrabMonster 1
@@ -2709,75 +2729,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5850578553012415794, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 1eeb96f3b61c24b4eaf3c22bf8a76a53, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5792744366562842766, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439229418}
-    - targetCorrespondingSourceObject: {fileID: 5792744366562842766, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439229423}
-    - targetCorrespondingSourceObject: {fileID: 5792744366562842766, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1439229415}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
---- !u!1 &1439229412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5792744366562842766, guid: 4e7afdf31c20ebf419ea38bf1d358719, type: 3}
-  m_PrefabInstance: {fileID: 1439229411}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1439229415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439229412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f55009bbd82faf44ab57d7ad176f7bac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xrOrigin: {fileID: 602031365}
-  detectionRange: 10
-  attackRange: 1
-  waypoints:
-  - {fileID: 1435070148}
-  - {fileID: 1176495439}
-  - {fileID: 2023934193}
-  - {fileID: 581929481}
-  isChasingPlayer: 0
-  isAttackingPlayer: 0
---- !u!114 &1439229418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439229412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08718382bace7b469e55c0ea6bd6325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1439229423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439229412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25f87ba3aedf1ee4fbad85f14333284f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1483652510
 GameObject:
   m_ObjectHideFlags: 0

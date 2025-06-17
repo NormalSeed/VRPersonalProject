@@ -53,6 +53,7 @@ public class MonsterAI : MonoBehaviour
         // 카메라 흔들림도 추가하면 좋을 듯 => Controller쪽에서 제어하도록 변경하는 게 좋아보임
         isMoving = false;
         isAttackingPlayer = true;
+        SoundManager.Instance.audioSfx.volume = 0.2f;
         SoundManager.Instance.PlaySFX(SoundManager.ESfx.SFX_MONSTER);
         // 애니메이션이 종료되면 게임오버 씬으로 => GameManager를 통해 씬 변경. 
         coDeadSceneLoad = StartCoroutine(CoDeadSceneLoad());
@@ -62,6 +63,7 @@ public class MonsterAI : MonoBehaviour
     {
         yield return waitTime;
         GameManager.Instance.LoadScene("GameOverScene");
+        SoundManager.Instance.audioSfx.volume = 0.5f;
         yield return null;
     }
 

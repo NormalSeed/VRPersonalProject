@@ -33,11 +33,13 @@ public class SoundManager : Singleton<SoundManager>
     public void PlayBGM(EBgm bgm)
     {
         audioBgm.clip = bgms[(int)bgm];
+        audioBgm.loop = true;
         audioBgm.Play();
     }
 
     public void StopBGM()
     {
+        audioBgm.loop = false;
         audioBgm.Stop();
     }
 

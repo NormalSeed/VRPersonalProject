@@ -19,7 +19,7 @@ public class MonsterAI : MonoBehaviour
     private Vector3 targetPos;
 
     private Coroutine coDeadSceneLoad;
-    private WaitForSeconds waitTime = new WaitForSeconds(3f);
+    private WaitForSeconds waitTime = new WaitForSeconds(2f);
 
     public void AIInit()
     {
@@ -53,6 +53,7 @@ public class MonsterAI : MonoBehaviour
         // 카메라 흔들림도 추가하면 좋을 듯 => Controller쪽에서 제어하도록 변경하는 게 좋아보임
         isMoving = false;
         isAttackingPlayer = true;
+        SoundManager.Instance.PlaySFX(SoundManager.ESfx.SFX_MONSTER);
         // 애니메이션이 종료되면 게임오버 씬으로 => GameManager를 통해 씬 변경. 
         coDeadSceneLoad = StartCoroutine(CoDeadSceneLoad());
     }
@@ -82,13 +83,11 @@ public class MonsterAI : MonoBehaviour
 
     public void ChaseSound()
     {
-        if (isHeardSound)
+        Debug.Log("소리 감지함");
+        agent.SetDestination(targetPos);
+        if (Vector3.Distance(transform.position, targetPos) < 0.5f)
         {
-            agent.SetDestination(targetPos);
-            if (Vector3.Distance(transform.position, targetPos) < 0.5f)
-            {
-                isHeardSound = false;
-            }
+            isHeardSound = false;
         }
     }
 

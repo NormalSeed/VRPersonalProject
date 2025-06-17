@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Event
   - FlashLight
+  - Interactor
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - Unvisible
   - Water
   - UI
-  - 
-  - 
+  - Interactor
+  - Player
   - 
   - 
   - 

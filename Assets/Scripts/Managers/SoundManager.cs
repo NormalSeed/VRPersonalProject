@@ -13,7 +13,8 @@ public class SoundManager : Singleton<SoundManager>
     public enum ESfx
     {
         SFX_MONSTER,
-        SFX_DEAD
+        SFX_DEAD,
+        SFX_DROP
     }
 
     [SerializeField] AudioClip[] bgms;
@@ -42,6 +43,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySFX(ESfx sfx)
     {
+        audioSfx.clip = sfxs[(int)sfx];
         audioSfx.PlayOneShot(sfxs[(int)sfx]);
     }
 }

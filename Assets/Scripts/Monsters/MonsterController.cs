@@ -33,7 +33,14 @@ public class MonsterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        monsterAI.DetectPlayer();
+        if (!monsterAI.isHeardSound)
+        {
+            monsterAI.DetectPlayer();
+        }
+        else
+        {
+            monsterAI.ChaseSound();
+        }
     }
 
     private void HandleAnimation()

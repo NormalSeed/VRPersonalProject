@@ -7,6 +7,7 @@ public class MonsterController : MonoBehaviour
     private MonsterAI monsterAI;
     private MonsterModel model;
     private Animator animator;
+    private Camera attackCam;
 
     private void Awake() => Init();
 
@@ -15,8 +16,14 @@ public class MonsterController : MonoBehaviour
         monsterAI = GetComponent<MonsterAI>();
         model = GetComponent<MonsterModel>();
         animator = GetComponent<Animator>();
+        attackCam = GetComponentInChildren<Camera>();
         monsterAI.AIInit();
         SubscribeEvents();
+    }
+
+    private void Start()
+    {
+        attackCam.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -42,11 +49,14 @@ public class MonsterController : MonoBehaviour
 
         if (monsterAI.isAttackingPlayer)
         {
+            Debug.Log("공격 애니메이션 재생");
             model.IsAttacking.Value = true;
+            attackCam.gameObject.SetActive(true);
         }
         else
         {
             model.IsAttacking.Value = false;
+            attackCam.gameObject.SetActive(false);
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandLight : Item 
 {
-    public float maxDistance = 5f;
+    public float maxDistance = 2f;
     public LayerMask unvisibleMonster;
     
     private UnvisibleMonsterController lastHitController;

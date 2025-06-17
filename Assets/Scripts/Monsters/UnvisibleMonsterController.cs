@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UnvisibleMonsterController : MonoBehaviour
 {
+    public GameObject wanderingMonster;
+    public MonsterAI monsterAI;
     private SkinnedMeshRenderer meshRenderer;
     public bool underFlashLight;
 
@@ -27,6 +29,15 @@ public class UnvisibleMonsterController : MonoBehaviour
         else
         {
             meshRenderer.enabled = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // 적절한 애니메이션으로 변경 필요
+            GameManager.Instance.LoadScene("GameOverScene");
         }
     }
 }

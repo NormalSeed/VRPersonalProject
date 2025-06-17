@@ -9,11 +9,14 @@ public class MonsterAI : MonoBehaviour
     private NavMeshAgent agent;
     public XROrigin xrOrigin;
     public float detectionRange = 10f;
-    public float attackRange = 1f;
+    public float attackRange = 2f;
     public Transform[] waypoints;
     private int currentWayPoint = 0;
     public bool isMoving = false;
     public bool isAttackingPlayer = false;
+    public bool isHeardSound = false;
+
+    private Vector3 targetPos;
 
     private Coroutine coDeadSceneLoad;
     private WaitForSeconds waitTime = new WaitForSeconds(3f);
@@ -36,6 +39,7 @@ public class MonsterAI : MonoBehaviour
         }
         else if(distanceToPlayer < attackRange)
         {
+            isMoving = false;
             AttackPlayer();
         }
         else if (distanceToPlayer >= detectionRange)
@@ -74,5 +78,23 @@ public class MonsterAI : MonoBehaviour
             currentWayPoint = newWayPoint;
             agent.SetDestination(waypoints[currentWayPoint].position);
         }
+    }
+
+    public void ChaseSound()
+    {
+        if (isHeardSound)
+        {
+            agent.SetDestination(targetPos);
+            if (Vector3.Distance(transform.position, targetPos) < 0.5f)
+            {
+                isHeardSound = false;
+            }
+        }
+    }
+
+    public void OnSoundHeard(Vector3 soundPos)
+    {
+        targetPos = soundPos;
+        isHeardSound = true;
     }
 }

@@ -12,7 +12,7 @@ public class EventRoomTrigger : MonoBehaviour
     public Light ceilingLight;
 
     private float initialIntensity;
-    private float lightDuration = 10f;
+    private float lightDuration = 20f;
     public bool isCounting;
     public bool isInteractable;
 
